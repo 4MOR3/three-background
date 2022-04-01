@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "author": "4MOR3",
   "publishConfig": {
-    "registry": "https://npmjs.com"
+    "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.3",
@@ -21,10 +21,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "build": "tsc src/index.ts"
   },
   "eslintConfig": {
     "extends": [

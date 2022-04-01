@@ -1,11 +1,13 @@
 {
   "compilerOptions": {
+    "jsx": "react-jsx",
     "target": "es5",
     "lib": [
       "dom",
       "dom.iterable",
       "esnext"
     ],
+    "outDir": "./dist",
     "declaration": true,
     "allowJs": true,
     "skipLibCheck": true,
@@ -19,9 +21,12 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    
   },
   "include": [
     "src"
+  ],
+  "exclude": [
+    "nodel_modules"
   ]
 }
