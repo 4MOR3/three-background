@@ -1,6 +1,6 @@
 {
   "name": "three-background",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "author": "4MOR3",
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
@@ -17,8 +17,7 @@
     "react-dom": "^18.0.0",
     "react-scripts": "5.0.0",
     "three": "^0.139.2",
-    "typescript": "^4.6.3",
-    "web-vitals": "^2.1.4"
+    "typescript": "^4.6.3"
   },
   "scripts": {
     "build": "tsc src/index.ts"
@@ -42,6 +41,10 @@
     ]
   },
   "devDependencies": {
-    "@types/three": "^0.139.0"
+    "@babel/core": "^7.17.8",
+    "@babel/preset-env": "^7.16.11",
+    "@types/three": "^0.139.0",
+    "babel-loader": "^8.2.4",
+    "ts-loader": "^9.2.8"
   }
 }
