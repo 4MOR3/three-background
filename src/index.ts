@@ -1,5 +1,7 @@
-import BasicOcean from "./BasicOcean/BasicOcean"
+import BasicOcean from "./BasicOcean/BasicOcean";
+
 const TBG = {
-  BasicOcean,
+  BasicOcean
 }
+
 export default TBG
