@@ -1,6 +1,6 @@
 import BasicOcean from "./BasicOcean/BasicOcean";
 
-const TBG = {
+namespace TBG  {
   BasicOcean
 }
 

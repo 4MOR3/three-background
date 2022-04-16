@@ -1,13 +1,10 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Test = void 0;
-function Test() {
-    var foo = /** @class */ (function () {
-        function foo() {
-            this.data = 1;
-        }
-        return foo;
-    }());
-    return new foo();
-}
-exports.Test = Test;
+var BasicOcean_1 = __importDefault(require("./BasicOcean/BasicOcean"));
+var TBG = {
+    BasicOcean: BasicOcean_1.default
+};
+exports.default = TBG;

@@ -3,14 +3,14 @@ import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
 import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js';
 import { FXAAShader } from 'three/examples/jsm/shaders/FXAAShader.js';
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { Sky } from 'three/examples/jsm/objects/Sky'
 import { Water } from 'three/examples/jsm/objects/Water.js';
-class OceanFactory{
+class OceanFactory {
 
   scene: THREE.Scene;         // 场景
 
   renderer: THREE.WebGLRenderer  
+
 
   camera: THREE.PerspectiveCamera
 
@@ -55,8 +55,8 @@ class OceanFactory{
       1, 				//视窗的高宽比
       1,			  //near,近面，距离相机小于0.1则不会被渲染。
       20000);		//far,远面，距离大于1000则不会被渲染
-    camera.position.set(0, 1000, 100);                         //相机位置 
-    camera.lookAt(0,1000,0);     
+    camera.position.set(0, 0, 1000);                         //相机位置 
+    camera.lookAt(0,0,0);     
 
     const composer = new EffectComposer(renderer);
   
@@ -75,7 +75,7 @@ class OceanFactory{
     this.camera = camera;
     this.genSky();
     this.genWater();
-    this.updateSun(1.77,180)
+    this.updateSun(1.77,145)
     this.resize()
     return this;
   }
@@ -85,10 +85,10 @@ class OceanFactory{
     if (this.water) {
       this.water.material.uniforms['time'].value += 1.0 / 120.0;
     }
-    this.camera.position.x += (this.mouseX - this.camera.position.x) * 0.00007;
-    this.camera.position.y += (-this.mouseY - 77 - this.camera.position.y) * 0.00007;
+    this.camera.position.x += ( this.mouseX - this.camera.position.x ) * 0.0005;
+    this.camera.position.y += (- this.mouseY + 200  - this.camera.position.y) * 0.0005;
     this.camera.lookAt(0, 0, 0);
-    this.reqId = window.requestAnimationFrame(() => { this.animate() });
+    this.reqId = window.requestAnimationFrame(() => { this.animate() })
   }
   
   resize() {
@@ -96,15 +96,19 @@ class OceanFactory{
 		let width = this.winWidth;
 		this.camera.aspect = width / height;
 		this.camera.updateProjectionMatrix();
-    this.renderer.setSize(width, height, false);
-    this.composer.setSize(width, height);
+    this.renderer.setSize(width, height,false);
+    this.composer.setSize( width, height );
     this.effectFXAA.uniforms[ 'resolution' ].value.set( 1 / width, 1 / height );
   }
   mouseX: number = 0;
-  mouseY: number = 0
+  mouseY: number = 0;
+  moveDbc: number = 0;
   mousemove(e: MouseEvent) { 
-    this.mouseX = e.clientX - this.winWidth / 2;
-    this.mouseY = e.clientY - this.winWidth / 2
+    if (this.reqId - this.moveDbc > 30) {
+      this.moveDbc = this.reqId;
+      this.mouseX = e.clientX - this.winWidth / 2;
+      this.mouseY = e.clientY - this.winHeight / 2;
+    }
     
   }
 
@@ -112,10 +116,6 @@ class OceanFactory{
     this.freeUp(this.scene)
     cancelAnimationFrame(this.reqId);
   }
-  /**
-   * 内存清理, 释放geometry, texture, material的缓冲区
-   * @param {THREE.Scene} obj 
-   */
   freeUp(obj: any) { 
     cancelAnimationFrame(this.reqId);
     obj.children.forEach((data: any) => { 
@@ -142,9 +142,14 @@ class OceanFactory{
 		skyUniforms[ 'mieCoefficient' ].value = 0.005;
 		skyUniforms[ 'mieDirectionalG' ].value = 0.8;
     skyUniforms[ 'sunPosition' ].value = new THREE.Vector3(-377, 100, 50)
-    this.scene.add(sky);
+    
     this.sky = sky;
-
+    const time = new Date().getHours();
+      this.scene.add(sky);
+     
+    this.camera.position.set(0, 0, 1000);
+    this.camCtrl.set(0, 0, 0);
+    
   }
 
   genWater() { 
@@ -166,8 +171,8 @@ class OceanFactory{
     );
     water.material.uniforms['size'].value = 0.1
     water.material.uniforms['distortionScale'].value = 7
-    water.position.setY(-1000)
     water.rotation.x = - Math.PI / 2;
+    water.position.setY(-1000)
     this.water = water;
     this.scene.add( water );
   }
@@ -183,6 +188,5 @@ class OceanFactory{
       this.water.material.uniforms['sunDirection'].value.copy(sun).normalize();
     }
   }
-
 };
 export default OceanFactory

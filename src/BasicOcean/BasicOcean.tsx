@@ -1,7 +1,7 @@
-import { PropsWithChildren, ReactNode, useEffect, useRef } from "react"
+import { FC, PropsWithChildren, ReactNode, useEffect, useRef } from "react"
 import OF from "./Script"
 interface PropType { 
-
+  
 }
 function BasicOcean(prop: PropsWithChildren<PropType>) { 
   
