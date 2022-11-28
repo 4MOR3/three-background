@@ -1,3 +1,2 @@
 import BasicOcean from "./BasicOcean";
-
-export { BasicOcean as default } 
+export default BasicOcean

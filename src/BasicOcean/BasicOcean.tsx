@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren, ReactNode, useEffect, useRef } from "react"
+import React, { FC, PropsWithChildren, ReactNode, useEffect, useRef } from "react"
 import OF from "./Script"
 interface PropType { 
   
