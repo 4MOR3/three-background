@@ -1,3 +1,1 @@
-import BasicOcean from "./BasicOcean";
-
-export { BasicOcean as default } 
+export { default as BasicOcean  } from './BasicOcean'

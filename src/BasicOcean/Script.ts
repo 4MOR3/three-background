@@ -5,6 +5,12 @@ import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js';
 import { FXAAShader } from 'three/examples/jsm/shaders/FXAAShader.js';
 import { Sky } from 'three/examples/jsm/objects/Sky'
 import { Water } from 'three/examples/jsm/objects/Water.js';
+
+
+export class Test { 
+  data: number = 3;
+}
+
 class OceanFactory {
 
   scene: THREE.Scene;         // 场景
@@ -144,7 +150,7 @@ class OceanFactory {
     skyUniforms[ 'sunPosition' ].value = new THREE.Vector3(-377, 100, 50)
     
     this.sky = sky;
-    const time = new Date().getHours();
+    //const time = new Date().getHours();
       this.scene.add(sky);
      
     this.camera.position.set(0, 0, 1000);
